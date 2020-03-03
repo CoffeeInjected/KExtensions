@@ -41,8 +41,8 @@ inline fun <P1, R> Function1<P1, R>.toJavaFunction(): java.util.function.Functio
 
 inline fun <T, U> Consumer<T>.toBiConsumerFirst(): BiConsumer<T, U> = BiConsumer { t, _ -> accept(t) }
 inline fun <T, U> Consumer<U>.toBiConsumerSecond(): BiConsumer<T, U> = BiConsumer { _, u -> accept(u) }
-inline fun <T, R> Consumer<T>.toFunction(): java.util.function.Function<T, R> = Function { accept(it); null!! }
-inline fun <T> Consumer<T>.toKotlinFunction(): (T) -> Unit = { accept(it) }
+inline fun <T, R> Consumer<T>.toJavaFunction(): java.util.function.Function<T, R> = Function { accept(it); null!! }
+inline fun <T> Consumer<T>.toFunction(): (T) -> Unit = { accept(it) }
 
 inline fun <T, U> Predicate<T>.toBiPredicateFirst(): BiPredicate<T, U> = BiPredicate { t, _ -> test(t) }
 inline fun <T, U> Predicate<U>.toBiPredicateSecond(): BiPredicate<T, U> = BiPredicate { _, u -> test(u) }
