@@ -2,6 +2,8 @@
 
 package coffee.injected.extensions.strings
 
+import java.io.PrintWriter
+import java.io.StringWriter
 import java.net.URI
 import java.net.URL
 import java.util.*
@@ -35,3 +37,12 @@ inline fun String.toURL(): URL = URL(this)
 inline val String.base64Decoded: String get() = String(Base64.getDecoder().decode(toByteArray()))
 
 inline val String.base64Encoded: String get() = Base64.getEncoder().encodeToString(toByteArray())
+
+@Suppress("EXTENSION_SHADOWED_BY_MEMBER")
+inline fun StringBuilder.append(throwable: Throwable) = apply {
+    val writer = StringWriter()
+    throwable.printStackTrace(PrintWriter(writer))
+    append(writer)
+}
+
+inline fun StringBuilder.appendln(throwable: Throwable) = append(throwable).appendln()
