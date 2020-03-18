@@ -1,10 +1,10 @@
 plugins {
-    kotlin("jvm") version "1.3.61"
+    kotlin("jvm") version "1.3.70"
     maven
 }
 
 group = "coffee.injected"
-version = "1.0-SNAPSHOT"
+version = "0.3.0-SNAPSHOT"
 
 repositories {
     jcenter()
@@ -12,6 +12,7 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
+    compileOnly("org.slf4j", "slf4j-api", "1.7.30")
 }
 
 tasks {
