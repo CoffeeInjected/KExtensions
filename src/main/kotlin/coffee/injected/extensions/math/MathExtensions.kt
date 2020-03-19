@@ -4,11 +4,11 @@ package coffee.injected.extensions.math
 
 import kotlin.math.*
 
-inline val Long.even: Boolean get() = this % 2L == 0L
-inline val Number.even: Boolean get() = toLong().even
+inline val Long.isEven: Boolean get() = this % 2L == 0L
+inline val Number.isEven: Boolean get() = toLong().isEven
 
-inline val Long.odd: Boolean get() = !even
-inline val Number.odd: Boolean get() = toLong().odd
+inline val Long.isOdd: Boolean get() = !isEven
+inline val Number.isOdd: Boolean get() = toLong().isOdd
 
 inline val Int.isPositive: Boolean get() = this > 0
 inline val Int.isNegative: Boolean get() = this < 0
@@ -106,3 +106,15 @@ inline fun Float.next(direction: Double = Double.POSITIVE_INFINITY): Float = thi
 
 inline infix fun Double.scalb(scaleFactor: Int): Double = Math.scalb(this, scaleFactor)
 inline infix fun Float.scalb(scaleFactor: Int): Float = Math.scalb(this, scaleFactor)
+
+inline fun Int.setBit(i: Int, v: Int): Int =  if (v == 1) this or (1 shl i) else ((this or (1 shl i)) xor (1 shl i))
+inline fun Long.setBit(i: Int, v: Int): Long = if (v == 1) this or (1L shl i) else ((this or (1L shl i)) xor (1L shl i))
+
+inline fun Int.getBit(i: Int): Int  = (this shr i) and 1
+inline fun Long.getBit(i: Int): Int = ((this shr i) and 1L).toInt()
+
+inline fun Float.toPercents() : Int = (this * 100).toInt()
+inline fun Double.toPercents() : Int = (this * 100).toInt()
+
+inline fun Int.fromPercents() : Float = this.toFloat() / 100
+inline fun Int.fromPercentsD() : Double = this.toDouble() / 100
